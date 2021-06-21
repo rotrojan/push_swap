@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 20:27:44 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:46:02 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ static void	print_usage(void)
 int	main(int ac, char **av)
 {
 	t_error	error;
+	t_stack	stack_a;
 
 		(void)av;
 	if (ac < 2)
 		print_usage();
 	else
 	{
-		error = parse_args();
-		if (!= NO_ERROR)
-			return (exit_error(error));
+		error = parse_args(av, &stack_a);
+		if (error != NO_ERROR)
+			return (exit_error(error, stack_a));
 	}
 	return (0);
 }

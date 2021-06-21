@@ -6,11 +6,13 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 19:45:33 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 20:27:40 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:52:55 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int exit_error(t_error error, )
 
 t_error	parse_args(char **av)
 {
