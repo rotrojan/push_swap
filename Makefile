@@ -1,49 +1,58 @@
-PUSH_SWAP_NAME=	push_swap
-CHECKER_NAME=	checker
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
+#    Updated: 2021/06/21 19:07:44 by rotrojan         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-PUSH_SWAP_SRCS=	push_swap.c	ft_sorting.c	ft_sorting2.c
-PUSH_SWAP_OBJS=	$(PUSH_SWAP_SRCS:%.c=%.o)
+NAME = push_swap
 
-CHECKER_SRCS=	checker.c
-CHECKER_OBJS=	$(CHECKER_SRCS:%.c=%.o)
+SRCS = main.c
+SRCS_DIR = srcs
+OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
+OBJS_DIR = .objs
 
-GLOBAL_SRCS=	ft_parsing.c	sort_list.c	sort.c	sort2.c	sort3.c
-GLOBAL_OBJS=	$(GLOBAL_SRCS:%.c=%.o)
+DEPENDENCIES = $(OBJS:%.o=%.c)
 
-DEP=	$(PUSH_SWAP_OBJS:%.o=%.d)	$(CHECKER_OBJS:%.o=%.d)	$(GLOBAL_OBJS:%.o=%.d)
+CC = clang
+MKDIR = mkdir -p
+RM = rm -f
 
-CC=	clang
+LIBS = ft
 
-CFLAGS=	-MMD -Wall -Wextra -Werror
-CXXFLAGS=	-I includes/ -I libft/includes/ -I libgc/includes/
-LDFLAGS=	-L libft/ -lft -L libgc/ -lgc
+CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
+LDFLAGS = -L libft/ -lft
 
-vpath %.c	push_swap_file checker_file global_file
+vpath %.c $(addprefix $(SRCS_DIR), /.)
 
-all: lib $(PUSH_SWAP_NAME) $(CHECKER_NAME)
+all:
+	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
+	$(MAKE) $(NAME)
 
-lib:
-	$(MAKE) -C libgc
-	$(MAKE) -C libft
+$(NAME): $(OBJS) | $(LIBS:%=lib%.a)
+	$(CC) $^ -o $@ $(LDFLAGS)
 
-$(CHECKER_NAME): $(CHECKER_OBJS) $(GLOBAL_OBJS) | lib
-	$(CC) $(CXXFLAGS) $^ -o $(CHECKER_NAME) $(LDFLAGS)
+lib%.a:
+	$(MAKE) -C $(@:%.a=%)
 
-$(PUSH_SWAP_NAME): $(PUSH_SWAP_OBJS) $(GLOBAL_OBJS) | lib
-	$(CC) $(CXXFLAGS) $^ -o $(PUSH_SWAP_NAME) $(LDFLAGS)
+-include $(DEPENDENCIES)
+$(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
--include $(DEP)
-%.o: %.c
-	$(CC) $(CFLAGS) $(CXXFLAGS) -c $< -o $@
+$(OBJS_DIR):
+	$(MKDIR) $@
 
 clean:
-	rm -f $(CHECKER_OBJS) $(GLOBAL_OBJS) $(PUSH_SWAP_OBJS) $(DEP)
-	$(MAKE) clean -C libft
-	$(MAKE) clean -C libgc
+	$(RM) -r $(OBJS_DIR)
+	$(foreach LIB, $(LIBS), $(MAKE) clean -C lib$(LIB) ;)
 
-fclean: clean
-	rm -f $(CHECKER_NAME) $(PUSH_SWAP_NAME)
-	$(MAKE) fclean -C libft
-	$(MAKE) fclean -C libgc
+fclean:
+	$(RM) $(NAME)
+	$(foreach LIB, $(LIBS), $(MAKE) fclean -C lib$(LIB) ;)
 
 re: fclean all

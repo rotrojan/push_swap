@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 02:53:19 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/21 12:11:53 by bigo             ###   ########.fr        #
+#    Updated: 2021/06/21 18:34:34 by rotrojan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,14 +73,26 @@ SRCS 			=	ft_memset.c									\
 					gc_malloc.c									\
 					gc_free.c									\
 					gc_free_all.c								\
-					gc_exit.c
-OBJS			=	$(SRCS:%.c=$(OBJS_DIR)%.o)
+					gc_exit.c									\
+					ft_printf.c									\
+					parsing.c									\
+					conversion.c								\
+					convert_char.c								\
+					convert_str.c								\
+					convert_int.c								\
+					convert_uint.c								\
+					convert_ptr.c								\
+					convert_hexa.c								\
+					ft_printf_utils.c							\
+					digits_displaying_utils.c
+
+OBJS			=	$(SRCS:%.c=$(OBJS_DIR)/%.o)
 DEPENDENCIES	=	$(OBJS:.o=.d)
 
 ################################ MISCELLANEOUS #################################
 
 INCLUDES_DIR	=	./includes/
-OBJS_DIR		=	./.objs/
+OBJS_DIR		=	./.objs
 
 CFLAGS			+=	-Wall -Wextra -Werror -MMD $(INCLUDES_DIR:%=-I%)
 
@@ -94,7 +106,8 @@ MKDIR			=	mkdir -p
 
 #################################### RULES #####################################
 
-vpath %.c $(SRCS_DIR) $(SRCS_DIR)/garbage_collector $(SRCS_DIR)/lst_functions_templates
+vpath %.c $(SRCS_DIR) $(SRCS_DIR)/garbage_collector \
+	$(SRCS_DIR)/lst_functions_templates $(SRCS_DIR)/ft_printf
 
 all		:	$(NAME)
 
@@ -102,7 +115,7 @@ $(NAME)	:	$(OBJS)
 	$(AR) $@ $^
 
 -include $(DEPENDENCIES)
-$(OBJS_DIR)%.o : %.c | $(OBJS_DIR)
+$(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJS_DIR):
