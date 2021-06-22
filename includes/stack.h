@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 19:45:33 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 20:52:55 by rotrojan         ###   ########.fr       */
+/*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
+/*   Updated: 2021/06/22 16:20:04 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef STACK_H
+# define STACK_H
 
-int exit_error(t_error error, )
-
-t_error	parse_args(char **av)
+typedef enum e_operations
 {
-	t_error	error;
+	Sa,
+	Sb,
+	Ss,
+	Pa,
+	Pb,
+	Ra,
+	Rb,
+	Rr,
+	Rra,
+	Rrb,
+	Rrr
+}	t_operations;
 
-	int	i;
+typedef struct s_item
+{
+	int				nb;
+	struct s_item	*prev;
+	struct s_item	*next;
+}	t_item;
 
-	i = 1;
-	error = NO_ERROR;
-	while (av[i])
-	{
-		error = check_arg(av[i])
+typedef struct s_stack
+{
+	struct s_item	*top;
+	struct s_item	*items;
+}	t_stack;
 
-		i++;
-	}
-	if (check_duplicate = FALSE)
-		error =  DUPLICATE_ERROR;
-	return (error);
-}
+#endif

@@ -6,13 +6,13 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/21 19:07:44 by rotrojan         ###   ########.fr        #
+#    Updated: 2021/06/22 16:12:16 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = main.c
+SRCS = main.c parsing.c
 SRCS_DIR = srcs
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 OBJS_DIR = .objs

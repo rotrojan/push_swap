@@ -6,12 +6,17 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 20:23:25 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 20:24:01 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:29:25 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-enum e_bool
+#ifndef FT_BOOL_H
+# define FT_BOOL_H
+
+typedef enum e_bool
 {
-	FALSE,
-	TRUE
-}
+	False,
+	True
+}	t_bool;
+
+#endif

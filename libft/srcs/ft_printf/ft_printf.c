@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 03:58:20 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 17:37:47 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:39:03 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@
 ** "pf.already_written" (in case of a fullfilled buffer) is returned.
 */
 
-int	ft_printf(char const *format, ...)
+int	ft_vdprintf(int fd, char const *format, va_list args)
 {
-	va_list		args;
 	t_printf	pf;
 
 	ft_bzero(&pf, sizeof(pf));
 	pf.fmt = (char *)format;
-	va_start(args, format);
 	while (pf.fmt[pf.i_fmt])
 	{
 		if (pf.fmt[pf.i_fmt] != '%')
@@ -48,6 +46,22 @@ int	ft_printf(char const *format, ...)
 		}
 	}
 	va_end(args);
-	write(STDOUT_FILENO, pf.buf, pf.i_buf);
+	write(fd, pf.buf, pf.i_buf);
 	return (pf.i_buf + pf.already_written);
+}
+
+int	ft_dprintf(int fd, char const *format, ...)
+{
+	va_list		args;
+
+	va_start(args, format);
+	return (ft_vdprintf(fd, format, args));
+}
+
+int	ft_printf(char const *format, ...)
+{
+	va_list		args;
+
+	va_start(args, format);
+	return (ft_vdprintf(STDOUT_FILENO, format, args));
 }

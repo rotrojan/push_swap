@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 03:53:09 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/21 18:17:32 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/22 15:08:35 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include "libft.h"
 # define NB_CONVERSIONS 9
 # define STR_CONVERSION "cspdiuxX%"
@@ -76,6 +77,8 @@ enum	e_padding
 */
 
 int				ft_printf(char const *format, ...);
+int				ft_dprintf(int fd, char const *format, ...);
+int				ft_vdprintf(int fd, char const *format, va_list args);
 void			conversion(t_printf *pf, va_list args);
 int				parsing(t_printf *pf, t_spec *spec, va_list args, int *conv);
 void			init_spec(t_spec *spec);
