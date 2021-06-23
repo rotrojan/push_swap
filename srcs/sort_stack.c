@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/23 19:08:34 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/23 19:47:46 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@ void print_both_stack(t_stack *stack_a, t_stack *stack_b)
 	ft_printf("\n");
 }
 */
+
+void	quick_sort(t_stack *stack_a, t_stack *stack_b, unsigned int size)
+{
+	int				median;
+	t_item			*current;
+
+	median = get_median(stack_a);
+	/* stack->top->prev->next = NULL; */
+	current = stack_a->top;
+	while (size)
+	{
+		if (stack_a->top->nb > median)
+			push_b(stack_a, stack_b);
+		rotate_a(stack_a, stack_b);
+		--size;
+	}
+	/* stack->top->prev->next = stack->top; */
+}
 
 void	sort_three(t_stack *stack_a, t_stack *stack_b)
 {
@@ -65,5 +83,5 @@ void	sort_stack(t_stack *stack_a, t_stack *stack_b)
 	else if (size == 3)
 		sort_three(stack_a, stack_b);
 	else
-		quick_sort();
+		quick_sort(stack_a, stack_b, size);
 }
