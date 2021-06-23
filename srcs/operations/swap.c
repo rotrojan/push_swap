@@ -1,45 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 23:21:26 by bigo             ###   ########.fr       */
+/*   Created: 2021/06/21 19:45:33 by rotrojan          #+#    #+#             */
+/*   Updated: 2021/06/23 02:47:16 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
-# include "push_swap.h"
+#include "push_swap.h"
 
-typedef enum e_operations
+void	swap_a(t_stack *stack_a, t_stack *stack_b)
 {
-	Sa,
-	Sb,
-	Ss,
-	Pa,
-	Pb,
-	Ra,
-	Rb,
-	Rr,
-	Rra,
-	Rrb,
-	Rrr
-}	t_operations;
+	(void)stack_b;
+	swap(stack_a);
+	ft_printf("sa\n");
+}
 
-typedef struct s_item
+void	swap_b(t_stack *stack_a, t_stack *stack_b)
 {
-	int				nb;
-	struct s_item	*prev;
-	struct s_item	*next;
-}	t_item;
+	(void)stack_a;
+	swap(stack_b);
+	ft_printf("sb\n");
+}
 
-typedef struct s_stack
+void	swap_s(t_stack *stack_a, t_stack *stack_b)
 {
-	struct s_item	*top;
-	struct s_item	*items;
-}	t_stack;
-
-#endif
+	swap(stack_a);
+	swap(stack_b);
+	ft_printf("ss\n");
+}

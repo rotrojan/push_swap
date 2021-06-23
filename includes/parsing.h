@@ -6,13 +6,13 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 19:46:54 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 17:09:50 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/22 23:21:03 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-# include "stack.h"
+# include "push_swap.h"
 
 # define DUPLICATE_ERROR_STR "The arguments should not include duplicates"
 # define NON_DIGIT_ERROR_STR "The arguments should only be integers"

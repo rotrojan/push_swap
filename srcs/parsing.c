@@ -6,15 +6,15 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 19:45:33 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 21:14:24 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/22 21:49:22 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_error	check_arg(char *arg)
+static t_error	check_arg(char const *arg)
 {
-	char	*ptr;
+	char const	*ptr;
 
 	ptr = arg;
 	if (ft_isspace(*ptr) == True)
@@ -33,7 +33,7 @@ t_error	check_arg(char *arg)
 	return (No_error);
 }
 
-t_bool	check_duplicates(t_stack *stack_a)
+static t_bool	check_duplicates(t_stack const *stack_a)
 {
 	t_item	*current;
 	t_item	*to_check;
@@ -54,7 +54,7 @@ t_bool	check_duplicates(t_stack *stack_a)
 	return (True);
 }
 
-t_bool	add_arg_to_stack_a(char *arg, t_stack *stack_a)
+t_bool	add_arg_to_stack_a(char const *arg, t_stack *stack_a)
 {
 	t_item	*new_item;
 

@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 23:21:26 by bigo             ###   ########.fr       */
+/*   Created: 2021/06/21 19:45:33 by rotrojan          #+#    #+#             */
+/*   Updated: 2021/06/22 23:16:27 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
-# include "push_swap.h"
+#include "push_swap.h"
 
-typedef enum e_operations
+void	push_a(t_stack *stack_a, t_stack *stack_b)
 {
-	Sa,
-	Sb,
-	Ss,
-	Pa,
-	Pb,
-	Ra,
-	Rb,
-	Rr,
-	Rra,
-	Rrb,
-	Rrr
-}	t_operations;
+	push(stack_a, stack_b);
+	ft_printf("pa\n");
+}
 
-typedef struct s_item
+void	push_b(t_stack *stack_a, t_stack *stack_b)
 {
-	int				nb;
-	struct s_item	*prev;
-	struct s_item	*next;
-}	t_item;
-
-typedef struct s_stack
-{
-	struct s_item	*top;
-	struct s_item	*items;
-}	t_stack;
-
-#endif
+	push(stack_b, stack_a);
+	ft_printf("pb\n");
+}

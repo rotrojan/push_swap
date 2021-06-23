@@ -6,13 +6,21 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/22 16:12:16 by bigo             ###   ########.fr        #
+#    Updated: 2021/06/22 23:42:35 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = main.c parsing.c
+SRCS = main.c \
+	parsing.c \
+	operations_utils.c \
+	push.c \
+	swap.c \
+	rotate.c \
+	reverse_rotate.c \
+	sort_stack.c
+
 SRCS_DIR = srcs
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 OBJS_DIR = .objs
@@ -28,7 +36,7 @@ LIBS = ft
 CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
 LDFLAGS = -L libft/ -lft
 
-vpath %.c $(addprefix $(SRCS_DIR), /.)
+vpath %.c $(addprefix $(SRCS_DIR), $(addprefix /., /. /operations))
 
 all:
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)

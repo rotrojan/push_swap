@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 21:36:33 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/23 01:39:58 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,18 @@ static void	print_usage(void)
 	ft_dprintf(STDERR_FILENO, "Example: ./push_swap 18 4 -986 654 -12 0\n");
 }
 
+/*
+*/
 void	print_stack(t_stack *stack_a)
 {
 	t_item	*current;
 
 	current = stack_a->items;
+	if (current == NULL)
+	{
+		ft_printf("%p\n", current);
+		return ;
+	}
 	ft_printf("%d\n", current->nb);
 	current = current->next;
 	while (current != stack_a->top)
@@ -72,18 +79,21 @@ int	main(int ac, char **av)
 {
 	t_error			error;
 	t_stack			stack_a;
+	t_stack			stack_b;
 
 	if (ac < 2)
 		print_usage();
 	else
 	{
 		stack_a.items = NULL;
+		stack_a.top = NULL;
+		stack_b.items = NULL;
+		stack_b.top = NULL;
 		error = parse_args(av, &stack_a);
 		if (error != No_error)
 			return (exit_error(error, &stack_a));
-		/* ops = get_sorting_operations(&stack_a); */
-		/* print_operations(ops); */
-		print_stack(&stack_a);
+		/* print_stack(&stack_a); */
+		sort_stack(&stack_a, &stack_b);
 		free_stack(&stack_a);
 	}
 	return (EXIT_SUCCESS);
