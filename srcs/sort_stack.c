@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/23 03:03:02 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/23 19:08:34 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,45 @@ void print_both_stack(t_stack *stack_a, t_stack *stack_b)
 }
 */
 
+void	sort_three(t_stack *stack_a, t_stack *stack_b)
+{
+	int	first;
+	int	second;
+	int	third;
+
+	first = stack_a->top->nb;
+	second = stack_a->top->next->nb;
+	third = stack_a->top->next->next->nb;
+	if (first > second && first < third && second < third)
+		swap_a(stack_a, stack_b);
+	else if (first > second && first > third && second > third)
+	{
+		swap_a(stack_a, stack_b);
+		reverse_rotate_a(stack_a, stack_b);
+	}
+	else if (first > second && first > third && second < third)
+		rotate_a(stack_a, stack_b);
+	else if (first < second && first < third && second > third)
+	{
+		swap_a(stack_a, stack_b);
+		rotate_a(stack_a, stack_b);
+	}
+	else if (first < second && first > third && second > third)
+		reverse_rotate_a(stack_a, stack_b);
+}
+
 void	sort_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	reverse_rotate_r(stack_a, stack_b);
+	unsigned int	size;
+
+	size = get_stack_size(stack_a);
+	if (size == 2)
+	{
+		if (stack_a->top->nb > stack_a->top->next->nb)
+			swap_a(stack_a, stack_b);
+	}
+	else if (size == 3)
+		sort_three(stack_a, stack_b);
+	else
+		quick_sort();
 }

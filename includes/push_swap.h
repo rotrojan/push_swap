@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/23 00:09:38 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/23 18:54:26 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include "operations.h"
 
 void	sort_stack(t_stack *stack_a, t_stack *stack_b);
-void	print_stack(t_stack *stack);
+
+/*
+** sort_utils.c
+*/
+
+int		get_stack_size(t_stack *stack);
+int		get_median(t_stack *stack);
 
 #endif

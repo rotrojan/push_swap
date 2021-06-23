@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/22 23:42:35 by bigo             ###   ########.fr        #
+#    Updated: 2021/06/23 19:09:27 by rotrojan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c \
 	swap.c \
 	rotate.c \
 	reverse_rotate.c \
+	sort_utils.c \
 	sort_stack.c
 
 SRCS_DIR = srcs
@@ -60,6 +61,7 @@ clean:
 	$(foreach LIB, $(LIBS), $(MAKE) clean -C lib$(LIB) ;)
 
 fclean:
+	$(MAKE) clean
 	$(RM) $(NAME)
 	$(foreach LIB, $(LIBS), $(MAKE) fclean -C lib$(LIB) ;)
 

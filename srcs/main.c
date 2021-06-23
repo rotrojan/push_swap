@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/23 01:39:58 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/23 18:29:16 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,26 @@ static void	free_stack(t_stack *stack_a)
 
 	if (stack_a->items)
 	{
-		current = stack_a->top->next;
-		while (current->next != stack_a->top)
+		if (stack_a->top == stack_a->top->next)
 		{
+			free(stack_a->items);
+			ft_bzero(stack_a, sizeof(stack_a));
+		}
+		else
+		{
+			current = stack_a->top->next;
+			while (current->next != stack_a->top)
+			{
+				free(current->prev);
+				current->prev = NULL;
+				current = current->next;
+			}
 			free(current->prev);
 			current->prev = NULL;
-			current = current->next;
+			free(current);
+			current = NULL;
+			stack_a->items = NULL;
 		}
-		free(current->prev);
-		current->prev = NULL;
-		free(current);
-		current = NULL;
-		stack_a->items = NULL;
 	}
 }
 
@@ -85,10 +93,8 @@ int	main(int ac, char **av)
 		print_usage();
 	else
 	{
-		stack_a.items = NULL;
-		stack_a.top = NULL;
-		stack_b.items = NULL;
-		stack_b.top = NULL;
+		ft_bzero(&stack_a, sizeof(stack_a));
+		ft_bzero(&stack_b, sizeof(stack_b));
 		error = parse_args(av, &stack_a);
 		if (error != No_error)
 			return (exit_error(error, &stack_a));
