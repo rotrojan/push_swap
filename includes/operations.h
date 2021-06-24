@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 23:34:16 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/24 19:52:52 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,17 @@
 ** operations_utils.c
 */
 
-void	push(t_stack *stack1, t_stack *stack2);
-void	swap(t_stack *stack);
+void	take_item(t_item *item, t_stack *stack);
+void	put_item(t_item *item, t_stack *stack);
+char	get_stack_id_char(enum e_stack_id stack_id);
 
 /*
-** push.c
+** operations.c
 */
 
-void	push_a(t_stack *stack_a, t_stack *stack_b);
-void	push_b(t_stack *stack_a, t_stack *stack_b);
-
-/*
-** swap.c
-*/
-
-void	swap_a(t_stack *stack_a, t_stack *stack_b);
-void	swap_b(t_stack *stack_a, t_stack *stack_b);
-void	swap_s(t_stack *stack_a, t_stack *stack_b);
-
-/*
-** rotate.c
-*/
-
-void	rotate_a(t_stack *stack_a, t_stack *stack_b);
-void	rotate_b(t_stack *stack_a, t_stack *stack_b);
-void	rotate_r(t_stack *stack_a, t_stack *stack_b);
-
-/*
-** reverse_rotate.c
-*/
-
-void	reverse_rotate_a(t_stack *stack_a, t_stack *stack_b);
-void	reverse_rotate_b(t_stack *stack_a, t_stack *stack_b);
-void	reverse_rotate_r(t_stack *stack_a, t_stack *stack_b);
+void	push(enum e_stack_id stack_id);
+void	swap(enum e_stack_id stack_id);
+void	rotate(enum e_stack_id stack_id);
+void	reverse_rotate(enum e_stack_id stack_id);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/23 19:09:27 by rotrojan         ###   ########.fr        #
+#    Updated: 2021/06/24 20:35:03 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,8 @@ NAME = push_swap
 
 SRCS = main.c \
 	parsing.c \
+	operations.c \
 	operations_utils.c \
-	push.c \
-	swap.c \
-	rotate.c \
-	reverse_rotate.c \
 	sort_utils.c \
 	sort_stack.c
 
@@ -37,7 +34,7 @@ LIBS = ft
 CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
 LDFLAGS = -L libft/ -lft
 
-vpath %.c $(addprefix $(SRCS_DIR), $(addprefix /., /. /operations))
+vpath %.c $(addprefix $(SRCS_DIR), /. )
 
 all:
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)

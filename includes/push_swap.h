@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/23 18:54:26 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/24 19:55:58 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "parsing.h"
 # include "operations.h"
 
-void	sort_stack(t_stack *stack_a, t_stack *stack_b);
+void	sort_stack(void);
 
 /*
 ** sort_utils.c
@@ -27,5 +27,6 @@ void	sort_stack(t_stack *stack_a, t_stack *stack_b);
 
 int		get_stack_size(t_stack *stack);
 int		get_median(t_stack *stack);
+t_stack	*stack_provider(enum e_stack_id stack_id);
 
 #endif

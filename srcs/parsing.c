@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 19:45:33 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 21:49:22 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/24 20:45:24 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ static t_error	check_arg(char const *arg)
 	char const	*ptr;
 
 	ptr = arg;
-	if (ft_isspace(*ptr) == True)
-		while (ft_isspace(*ptr) == True)
+	if (ft_isspace(*ptr) == TRUE)
+		while (ft_isspace(*ptr) == TRUE)
 			++ptr;
 	if (*ptr == '+' || *ptr == '-')
 		++ptr;
-	if (ft_isdigit(*ptr) == False)
-		return (Non_digit_error);
-	while (ft_isdigit(*ptr) == True)
+	if (ft_isdigit(*ptr) == FALSE)
+		return (NON_DIGIT_ERROR);
+	while (ft_isdigit(*ptr) == TRUE)
 		++ptr;
 	if (*ptr != '\0')
-		return (Non_digit_error);
+		return (NON_DIGIT_ERROR);
 	if (ft_atoi(arg) != ft_atoll(arg))
-		return (Out_of_range_error);
-	return (No_error);
+		return (OUT_OF_RANGE_ERROR);
+	return (NO_ERROR);
 }
 
 static t_bool	check_duplicates(t_stack const *stack_a)
@@ -45,13 +45,13 @@ static t_bool	check_duplicates(t_stack const *stack_a)
 		while (current != stack_a->top->prev)
 		{
 			if (current->nb == to_check->nb)
-				return (False);
+				return (FALSE);
 			current = current->prev;
 		}
 		to_check = to_check->prev;
 		current = to_check->prev;
 	}
-	return (True);
+	return (TRUE);
 }
 
 t_bool	add_arg_to_stack_a(char const *arg, t_stack *stack_a)
@@ -61,7 +61,7 @@ t_bool	add_arg_to_stack_a(char const *arg, t_stack *stack_a)
 	new_item = NULL;
 	new_item = malloc(sizeof(*new_item));
 	if (new_item == NULL)
-		return (False);
+		return (FALSE);
 	new_item->nb = ft_atoi(arg);
 	if (stack_a->items == NULL)
 	{
@@ -77,26 +77,29 @@ t_bool	add_arg_to_stack_a(char const *arg, t_stack *stack_a)
 		stack_a->top->prev = new_item;
 		new_item->next = stack_a->top;
 	}
-	return (True);
+	++(stack_provider(A)->size);
+	return (TRUE);
 }
 
-t_error	parse_args(char **av, t_stack *stack_a)
+t_error	parse_args(char **av)
 {
 	t_error	error;
+	t_stack	*stack_a;
 	int		i;
 
 	i = 1;
-	error = No_error;
+	error = NO_ERROR;
+	stack_a = stack_provider(A);
 	while (av[i])
 	{
 		error = check_arg(av[i]);
-		if (error != No_error)
+		if (error != NO_ERROR)
 			return (error);
-		if (add_arg_to_stack_a(av[i], stack_a) == False)
-			return (Malloc_failure_error);
+		if (add_arg_to_stack_a(av[i], stack_a) == FALSE)
+			return (MALLOC_FAILURE_ERROR);
 		i++;
 	}
-	if (check_duplicates(stack_a) == False)
-		error = Duplicate_error;
+	if (check_duplicates(stack_a) == FALSE)
+		error = DUPLICATE_ERROR;
 	return (error);
 }

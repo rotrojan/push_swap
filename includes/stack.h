@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 23:21:26 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/24 19:48:47 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 # define STACK_H
 # include "push_swap.h"
 
-typedef enum e_operations
+enum e_stack_id
 {
-	Sa,
-	Sb,
-	Ss,
-	Pa,
-	Pb,
-	Ra,
-	Rb,
-	Rr,
-	Rra,
-	Rrb,
-	Rrr
-}	t_operations;
+	A,
+	B,
+	S,
+	R,
+	STACK_ID_MAX
+};
 
 typedef struct s_item
 {
@@ -40,6 +34,7 @@ typedef struct s_stack
 {
 	struct s_item	*top;
 	struct s_item	*items;
+	unsigned int	size;
 }	t_stack;
 
 #endif

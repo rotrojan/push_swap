@@ -6,82 +6,77 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/23 19:47:46 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/06/24 20:48:07 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-void print_both_stack(t_stack *stack_a, t_stack *stack_b)
-{
-	ft_printf("Stack A\n");
-	print_stack(stack_a);
-	ft_printf("\n");
-
-	ft_printf("Stack B\n");
-	print_stack(stack_b);
-	ft_printf("\n");
-}
-*/
-
-void	quick_sort(t_stack *stack_a, t_stack *stack_b, unsigned int size)
+void	quick_sort(t_stack *stack)
 {
 	int				median;
 	t_item			*current;
+	unsigned int	count;
 
-	median = get_median(stack_a);
+	count = stack->size;
+	median = get_median(stack);
 	/* stack->top->prev->next = NULL; */
-	current = stack_a->top;
-	while (size)
+	current = stack->top;
+	while (count)
 	{
-		if (stack_a->top->nb > median)
-			push_b(stack_a, stack_b);
-		rotate_a(stack_a, stack_b);
-		--size;
+		if (stack->top->nb > median)
+			push(B);
+		rotate(A);
+		--count;
 	}
 	/* stack->top->prev->next = stack->top; */
 }
 
-void	sort_three(t_stack *stack_a, t_stack *stack_b)
+void	sort_three(void)
 {
-	int	first;
-	int	second;
-	int	third;
+	int		first;
+	int		second;
+	int		third;
+	t_stack	*stack_a;
 
+	stack_a = stack_provider(A);
 	first = stack_a->top->nb;
 	second = stack_a->top->next->nb;
 	third = stack_a->top->next->next->nb;
 	if (first > second && first < third && second < third)
-		swap_a(stack_a, stack_b);
+		swap(A);
 	else if (first > second && first > third && second > third)
 	{
-		swap_a(stack_a, stack_b);
-		reverse_rotate_a(stack_a, stack_b);
+		swap(A);
+		reverse_rotate(A);
 	}
 	else if (first > second && first > third && second < third)
-		rotate_a(stack_a, stack_b);
+		rotate(A);
 	else if (first < second && first < third && second > third)
 	{
-		swap_a(stack_a, stack_b);
-		rotate_a(stack_a, stack_b);
+		swap(A);
+		rotate(A);
 	}
 	else if (first < second && first > third && second > third)
-		reverse_rotate_a(stack_a, stack_b);
+		reverse_rotate(A);
 }
 
-void	sort_stack(t_stack *stack_a, t_stack *stack_b)
+void	sort_stack(void)
 {
 	unsigned int	size;
+	t_stack			*stack_a;
 
-	size = get_stack_size(stack_a);
-	if (size == 2)
+	stack_a = stack_provider(A);
+	size = stack_a->size;
+	if (size <= 2)
 	{
 		if (stack_a->top->nb > stack_a->top->next->nb)
-			swap_a(stack_a, stack_b);
+			swap(A);
 	}
 	else if (size == 3)
-		sort_three(stack_a, stack_b);
+	{
+		sort_three();
+	}
 	else
-		quick_sort(stack_a, stack_b, size);
+		quick_sort(stack_a);
 }

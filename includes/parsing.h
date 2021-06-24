@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 19:46:54 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/22 23:21:03 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/24 20:39:33 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 typedef enum e_error
 {
-	No_error,
-	Duplicate_error,
-	Non_digit_error,
-	Out_of_range_error,
-	Malloc_failure_error,
-	Error_max
+	NO_ERROR,
+	DUPLICATE_ERROR,
+	NON_DIGIT_ERROR,
+	OUT_OF_RANGE_ERROR,
+	MALLOC_FAILURE_ERROR,
+	ERROR_MAX
 }	t_error;
 
-t_error	parse_args(char **av, t_stack *stack_a);
+t_error	parse_args(char **av);
 
 #endif
