@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/24 19:55:58 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/27 13:11:09 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,17 @@
 void	sort_stack(void);
 
 /*
+** stack_utils.c
+*/
+
+t_stack	*stack_provider(enum e_stack_id stack_id);
+void	free_stack(t_stack *stack_a);
+
+/*
 ** sort_utils.c
 */
 
-int		get_stack_size(t_stack *stack);
-int		get_median(t_stack *stack);
-t_stack	*stack_provider(enum e_stack_id stack_id);
+t_bool	is_sorted(t_stack *stack);
+void	sort_three(enum e_stack_id stack_id);
 
 #endif

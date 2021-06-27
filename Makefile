@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/24 20:35:03 by bigo             ###   ########.fr        #
+#    Updated: 2021/06/27 13:09:18 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS = main.c \
 	parsing.c \
 	operations.c \
 	operations_utils.c \
+	stack_utils.c \
 	sort_utils.c \
 	sort_stack.c
 

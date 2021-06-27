@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 19:45:33 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/24 20:37:00 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/27 13:07:29 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ void	swap(enum e_stack_id stack_id)
 	t_item	*item;
 	t_stack	*stack;
 
-	if (stack_id == A)
-		stack = stack_provider(A);
-	else
-		stack = stack_provider(B);
+	stack = stack_provider(stack_id);
 	if (stack->items != NULL)
 	{
 		item = stack->top->next;
@@ -55,7 +52,7 @@ void	swap(enum e_stack_id stack_id)
 	{
 		if (stack->items != NULL)
 		{
-			stack = stack_provider(A);
+			stack = stack_provider((stack_id + 1) % 2);
 			item = stack->top->next;
 			take_item(item, stack);
 			put_item(item, stack);
