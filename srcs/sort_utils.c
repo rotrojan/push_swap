@@ -6,21 +6,23 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 18:52:56 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 13:06:18 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/27 19:50:52 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	is_sorted(t_stack *stack)
+t_bool	is_sorted(enum e_stack_id stack_id)
 {
+	t_stack			*stack;
 	t_item			*current;
 	unsigned int	size;
 	unsigned int	i;
 
+	stack = stack_provider(stack_id);
 	current = stack->top;
-	i = 0;
 	size = stack->size;
+	i = 0;
 	while (i < size)
 	{
 		if (current->nb > current->next->nb && current->next != stack->top)
@@ -31,31 +33,48 @@ t_bool	is_sorted(t_stack *stack)
 	return (TRUE);
 }
 
-void	sort_three(enum e_stack_id stack_id)
+t_bool	is_reverse_sorted(enum e_stack_id stack_id)
 {
-	int		first;
-	int		second;
-	int		third;
-	t_stack	*stack;
+	t_stack			*stack;
+	t_item			*current;
+	unsigned int	size;
+	unsigned int	i;
 
 	stack = stack_provider(stack_id);
-	first = stack->top->nb;
-	second = stack->top->next->nb;
-	third = stack->top->next->next->nb;
-	if (first > second && first < third && second < third)
-		swap(A);
-	else if (first > second && first > third && second > third)
+	current = stack->top;
+	size = stack->size;
+	i = 0;
+	while (i < size)
 	{
-		swap(A);
-		reverse_rotate(A);
+		if (current->nb < current->next->nb && current->next != stack->top)
+			return (FALSE);
+		current = current->next;
+		++i;
 	}
-	else if (first > second && first > third && second < third)
-		rotate(A);
-	else if (first < second && first < third && second > third)
+	return (TRUE);
+}
+
+int	get_mini(
+		enum e_stack_id stack_id, void (**shortest_action)(enum e_stack_id))
+{
+	t_stack			*stack;
+	unsigned int	count;
+	t_item			*current;
+	int				mini;
+
+	stack = stack_provider(stack_id);
+	count = stack->size;
+	mini = stack->top->nb;
+	current = stack->top;
+	while (count--)
 	{
-		swap(A);
-		rotate(A);
+		if (mini > current->nb)
+			mini = current->nb;
+		current = current->next;
 	}
-	else if (first < second && first > third && second > third)
-		reverse_rotate(A);
+	if (count > stack->size / 2)
+		*shortest_action = &rotate;
+	else
+		*shortest_action = &reverse_rotate;
+	return (mini);
 }
