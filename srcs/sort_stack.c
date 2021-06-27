@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 20:01:40 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/27 22:32:55 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static void	sort_five(enum e_stack_id stack_id)
 	void	(*shortest_rotate)(enum e_stack_id);
 	int		mini;
 
-	shortest_rotate = NULL;
 	stack = stack_provider(stack_id);
 	while (stack->size > 3)
 	{
-		mini = get_mini(stack_id, &shortest_rotate);
+		mini = get_mini(stack_id);
+		shortest_rotate = get_shortest_rotate(stack_id, mini);
 		while (stack->top->nb != mini)
 			shortest_rotate(stack_id);
 		push((stack_id + 1) % 2);

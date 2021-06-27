@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 20:01:03 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/27 22:32:29 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_stack(t_stack *stack_a);
 
 t_bool	is_sorted(enum e_stack_id stack_id);
 t_bool	is_reverse_sorted(enum e_stack_id stack_id);
-int		get_mini(enum e_stack_id stack_id,
-			void (**shortest_action)(enum e_stack_id));
+void	*get_shortest_rotate(enum e_stack_id stack_id, int value);
+int		get_mini(enum e_stack_id stack_id);
 
 #endif
