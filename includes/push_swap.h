@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 22:32:29 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/29 00:24:39 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include "operations.h"
 
 void	sort_stack(void);
+
+/*
+** stack_utils.c
+*/
+
+void	sort(void);
+
 
 /*
 ** stack_utils.c

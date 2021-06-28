@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 22:32:55 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/29 00:22:48 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,51 +61,6 @@ static void	sort_five(enum e_stack_id stack_id)
 		push(stack_id);
 }
 
-static void	sort_by_bit(
-	unsigned int mask, unsigned int size, enum e_stack_id stack_id)
-{
-	unsigned int	i;
-	t_stack			*stack;
-
-	i = 0;
-	stack = stack_provider(stack_id);
-	while (i < size)
-	{
-		if ((mask & stack->top->nb) == 0)
-			push((stack_id + 1) % 2);
-		else
-			rotate(stack_id);
-		++i;
-	}
-}
-
-static void	radix_sort(enum e_stack_id stack_id)
-{
-	unsigned int	mask;
-	unsigned int	size;
-	int				flag;
-
-	mask = 0x0001;
-	flag = 0;
-	size = stack_provider(stack_id)->size;
-	while (mask != 0 && is_sorted(stack_id) == FALSE)
-	{
-		sort_by_bit(mask, size, stack_id);
-		if (is_sorted(stack_id) == TRUE
-			&& is_reverse_sorted((stack_id + 1 ) % 2) == TRUE)
-			flag = 1;
-		while (stack_provider((stack_id + 1) % 2)->items != NULL)
-			push(A);
-		if (flag == 1)
-		{
-			while (is_sorted(stack_id) == FALSE)
-				rotate(A);
-			break ;
-		}
-		mask = mask << 1;
-	}
-}
-
 void	sort_stack(void)
 {
 	unsigned int	size;
@@ -120,5 +75,5 @@ void	sort_stack(void)
 	else if (size <= 5)
 		sort_five(A);
 	else
-		radix_sort(A);
+		sort();
 }
