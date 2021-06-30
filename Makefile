@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/27 13:09:18 by bigo             ###   ########.fr        #
+#    Updated: 2021/06/27 20:30:39 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRCS = main.c \
 SRCS_DIR = srcs
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 OBJS_DIR = .objs
+
+BONUS_SRCS = checker_main.c
 
 DEPENDENCIES = $(OBJS:%.o=%.c)
 
@@ -44,6 +46,8 @@ all:
 $(NAME): $(OBJS) | $(LIBS:%=lib%.a)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
+bonus: $(OBJS_BONUS) | $(LIBS:%=lib%.a)
+
 lib%.a:
 	$(MAKE) -C $(@:%.a=%)
 
@@ -64,3 +68,5 @@ fclean:
 	$(foreach LIB, $(LIBS), $(MAKE) fclean -C lib$(LIB) ;)
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus
