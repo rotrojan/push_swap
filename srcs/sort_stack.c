@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 22:32:55 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/30 18:11:42 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,54 @@ static void	sort_five(enum e_stack_id stack_id)
 		push(stack_id);
 }
 
-static void	sort_by_bit(
-	unsigned int mask, unsigned int size, enum e_stack_id stack_id)
+int	get_median_chunk(enum e_stack_id stack_id, unsigned int size)
 {
-	unsigned int	i;
 	t_stack			*stack;
+	t_item			*current;
+	t_item			*to_check;
+	unsigned int	count;
+	unsigned int	i;
+	unsigned int	j;
 
-	i = 0;
 	stack = stack_provider(stack_id);
+	to_check = stack->top;
+	i = 0;
 	while (i < size)
 	{
-		if ((mask & stack->top->nb) == 0)
+		j = 0;
+		count = 0;
+		current = stack->top;
+		while (j < size)
+		{
+			if (current->nb > to_check->nb)
+				++count;
+			current = current->next;
+			++j;
+		}
+		if (count == stack->size / 2)
+			break ;
+		to_check = to_check->next;
+		++i;
+	}
+	return (to_check->nb);
+}
+
+void	pre_sort(enum e_stack_id stack_id, unsigned int size)
+{
+	/* t_item	*current; */
+	int		median;
+	unsigned int		i;
+	t_stack	*stack;
+
+	/* current = stack_provider(stack_id)->top; */
+	stack = stack_provider(stack_id);
+	median = get_median_chunk(stack_id, size);
+	ft_printf("median = %d\n", median);
+	ft_printf("size = %d\n", size);
+	i = 0;
+	while (i < size)
+	{
+		if (stack->top->nb > median)
 			push((stack_id + 1) % 2);
 		else
 			rotate(stack_id);
@@ -79,31 +116,15 @@ static void	sort_by_bit(
 	}
 }
 
-static void	radix_sort(enum e_stack_id stack_id)
+static void	quick_sort(void)
 {
-	unsigned int	mask;
+	t_stack			*stack;
 	unsigned int	size;
-	int				flag;
 
-	mask = 0x0001;
-	flag = 0;
-	size = stack_provider(stack_id)->size;
-	while (mask != 0 && is_sorted(stack_id) == FALSE)
-	{
-		sort_by_bit(mask, size, stack_id);
-		if (is_sorted(stack_id) == TRUE
-			&& is_reverse_sorted((stack_id + 1 ) % 2) == TRUE)
-			flag = 1;
-		while (stack_provider((stack_id + 1) % 2)->items != NULL)
-			push(A);
-		if (flag == 1)
-		{
-			while (is_sorted(stack_id) == FALSE)
-				rotate(A);
-			break ;
-		}
-		mask = mask << 1;
-	}
+	stack = stack_provider(A);
+	size = stack->size;
+	pre_sort(A, size);
+
 }
 
 void	sort_stack(void)
@@ -120,5 +141,5 @@ void	sort_stack(void)
 	else if (size <= 5)
 		sort_five(A);
 	else
-		radix_sort(A);
+		quick_sort();
 }

@@ -6,12 +6,15 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/27 20:30:39 by bigo             ###   ########.fr        #
+#    Updated: 2021/06/30 19:50:11 by rotrojan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
 
+SRCS_DIR = srcs
+OBJS_DIR = .objs
+
+NAME = push_swap
 SRCS = main.c \
 	parsing.c \
 	operations.c \
@@ -19,14 +22,13 @@ SRCS = main.c \
 	stack_utils.c \
 	sort_utils.c \
 	sort_stack.c
-
-SRCS_DIR = srcs
 OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
-OBJS_DIR = .objs
-
-BONUS_SRCS = checker_main.c
-
 DEPENDENCIES = $(OBJS:%.o=%.c)
+
+CHECKER_NAME = checker
+CHECKER_SRCS = checker_main.c
+CHECKER_OBJS = $(CHECKER_SRCS:%.c=$(OBJS_DIR)/%.o)
+CHECKER_DEPENDENCIES = $(CHECKER_OBJS:%.o=%.c)
 
 CC = clang
 MKDIR = mkdir -p
@@ -37,7 +39,7 @@ LIBS = ft
 CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
 LDFLAGS = -L libft/ -lft
 
-vpath %.c $(addprefix $(SRCS_DIR), /. )
+vpath %.c $(addprefix $(SRCS_DIR), /. /c)
 
 all:
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
@@ -46,12 +48,17 @@ all:
 $(NAME): $(OBJS) | $(LIBS:%=lib%.a)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
-bonus: $(OBJS_BONUS) | $(LIBS:%=lib%.a)
+bonus :
+	$(MAKE) $(CHECKER_NAME)
+
+$(CHECKER_NAME): $(OBJS_BONUS) | $(LIBS:%=lib%.a)
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 lib%.a:
+	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
 	$(MAKE) -C $(@:%.a=%)
 
--include $(DEPENDENCIES)
+-include $(DEPENDENCIES) $(CHECKER_DEPENDENCIES)
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 

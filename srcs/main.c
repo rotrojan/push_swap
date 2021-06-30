@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 13:05:33 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/30 18:41:19 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,12 @@ static int	exit_error(t_error error)
 	return (EXIT_FAILURE);
 }
 
-static void	print_usage(void)
-{
-	ft_dprintf(STDERR_FILENO, "Usage:   ./push_swap <integers_list> ...\n");
-	ft_dprintf(STDERR_FILENO, "Example: ./push_swap 18 4 -986 654 -12 0\n");
-}
-
 int	main(int ac, char **av)
 {
 	t_error			error;
 
 	if (ac < 2)
-		print_usage();
-	else
+		return (0);
 	{
 		error = parse_args(av);
 		if (error != NO_ERROR)

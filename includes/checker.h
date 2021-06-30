@@ -6,18 +6,13 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 20:53:45 by bigo             ###   ########.fr       */
+/*   Updated: 2021/06/30 18:28:39 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
-# include "ft_bool.h"
-# include "libft.h"
-# include "ft_printf.h"
-# include "stack.h"
-# include "parsing.h"
-# include "operations.h"
+# include "push_swap.h"
 
 enum e_instruction
 {
