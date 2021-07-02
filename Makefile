@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/06/30 19:50:11 by rotrojan         ###   ########.fr        #
+#    Updated: 2021/07/02 17:10:14 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ LIBS = ft
 CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
 LDFLAGS = -L libft/ -lft
 
-vpath %.c $(addprefix $(SRCS_DIR), /. /c)
+vpath %.c $(addprefix $(SRCS_DIR), /. /checker)
 
 all:
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
@@ -51,7 +51,7 @@ $(NAME): $(OBJS) | $(LIBS:%=lib%.a)
 bonus :
 	$(MAKE) $(CHECKER_NAME)
 
-$(CHECKER_NAME): $(OBJS_BONUS) | $(LIBS:%=lib%.a)
+$(CHECKER_NAME): $(CHECKER_OBJS) | $(LIBS:%=lib%.a)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 lib%.a:

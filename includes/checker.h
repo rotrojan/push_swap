@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/30 18:28:39 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:15:46 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 enum e_instruction
 {
+	INSTRUCTION_ERROR = -1,
 	PUSH_A,
 	PUSH_B,
 	SWAP_A,
@@ -27,7 +28,7 @@ enum e_instruction
 	REVERSE_ROTATE_A,
 	REVERSE_ROTATE_B,
 	REVERSE_ROTATE_R,
-	INSTRUCTION_ERROR
+	END_OF_INSTRUCTIONS
 };
 
 #endif

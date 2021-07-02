@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 18:52:56 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 13:04:11 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/02 17:37:08 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,31 @@ t_stack	*stack_provider(enum e_stack_id stack_id)
 		return (&stack_b);
 }
 
-void	free_stack(t_stack *stack_a)
+void	free_stack(enum e_stack_id stack_id)
 {
+	t_stack		*stack;
 	t_item		*current;
 
-	if (stack_a->items)
+	stack = stack_provider(stack_id);
+	if (stack->items)
 	{
-		if (stack_a->top == stack_a->top->next)
+		if (stack->top == stack->top->next)
 		{
-			free(stack_a->items);
-			ft_bzero(stack_a, sizeof(stack_a));
+			free(stack->items);
+			ft_bzero(stack, sizeof(*stack));
 		}
 		else
 		{
-			current = stack_a->top->next;
-			while (current->next != stack_a->top)
+			current = stack->top->next;
+			while (current->next != stack->top)
 			{
 				free(current->prev);
-				current->prev = NULL;
 				current = current->next;
 			}
 			free(current->prev);
-			current->prev = NULL;
 			free(current);
 			current = NULL;
-			stack_a->items = NULL;
+			ft_bzero(stack, sizeof(*stack));
 		}
 	}
 }

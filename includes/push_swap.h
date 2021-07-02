@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/27 22:32:29 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/02 17:37:39 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sort_stack(void);
 */
 
 t_stack	*stack_provider(enum e_stack_id stack_id);
-void	free_stack(t_stack *stack_a);
+void	free_stack(enum e_stack_id stack_id);
 
 /*
 ** sort_utils.c
