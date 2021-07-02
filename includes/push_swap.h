@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/02 17:37:39 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 01:12:41 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "operations.h"
 
 void	sort_stack(void);
+void	radix_sort(enum e_stack_id stack_id);
 
 /*
 ** stack_utils.c
@@ -29,11 +30,17 @@ t_stack	*stack_provider(enum e_stack_id stack_id);
 void	free_stack(enum e_stack_id stack_id);
 
 /*
-** sort_utils.c
+** sort_checks.c
 */
 
 t_bool	is_sorted(enum e_stack_id stack_id);
+t_bool	is_circular_sorted(enum e_stack_id stack_id);
 t_bool	is_reverse_sorted(enum e_stack_id stack_id);
+
+/*
+** sort_utils.c
+*/
+
 void	*get_shortest_rotate(enum e_stack_id stack_id, int value);
 int		get_mini(enum e_stack_id stack_id);
 

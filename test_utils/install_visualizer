@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+git clone https://github.com/o-reo/push_swap_visualizer.git
+# python3 pyviz.py `ruby -e "puts (-50..50).to_a.shuffle.join(' ')"`
