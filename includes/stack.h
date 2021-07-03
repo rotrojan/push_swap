@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/24 19:48:47 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 02:40:28 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ enum e_stack_id
 typedef struct s_item
 {
 	int				nb;
+	unsigned int	order;
 	struct s_item	*prev;
 	struct s_item	*next;
 }	t_item;

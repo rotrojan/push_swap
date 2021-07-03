@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/02 17:47:30 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 03:05:12 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int ac, char **av)
 			ft_putendl_fd("Error", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
-		sort_stack();
+		order_stack(A);
+		sort_stack(A);
 		free_stack(A);
 	}
 	return (EXIT_SUCCESS);

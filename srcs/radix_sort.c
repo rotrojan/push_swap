@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 01:14:14 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 03:16:38 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ static void	sort_by_bit(
 	stack = stack_provider(stack_id);
 	while (i < size)
 	{
-		if ((mask & stack->top->nb) == 0)
+		if ((mask & stack->top->order) == 0)
 			push((stack_id + 1) % 2);
 		else
 			rotate(stack_id);
+		if (is_sorted(stack_id) == TRUE
+			&& is_reverse_sorted((stack_id + 1) % 2) == TRUE)
+			return ;
 		++i;
 	}
 }

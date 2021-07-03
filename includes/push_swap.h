@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 01:12:41 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 03:06:20 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "parsing.h"
 # include "operations.h"
 
-void	sort_stack(void);
+void	sort_stack(enum e_stack_id stack_id);
 void	radix_sort(enum e_stack_id stack_id);
 
 /*
@@ -28,6 +28,7 @@ void	radix_sort(enum e_stack_id stack_id);
 
 t_stack	*stack_provider(enum e_stack_id stack_id);
 void	free_stack(enum e_stack_id stack_id);
+void	order_stack(enum e_stack_id stack_id);
 
 /*
 ** sort_checks.c

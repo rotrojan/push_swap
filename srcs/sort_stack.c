@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/02 23:40:57 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 03:05:53 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ static void	sort_five(enum e_stack_id stack_id)
 		push(stack_id);
 }
 
-void	sort_stack(void)
+void	sort_stack(enum e_stack_id stack_id)
 {
 	unsigned int	size;
 
-	size = stack_provider(A)->size;
-	if (is_sorted(A) == TRUE)
+	size = stack_provider(stack_id)->size;
+	if (is_sorted(stack_id) == TRUE)
 		return ;
 	else if (size == 2)
 		swap(A);
