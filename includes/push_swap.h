@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 03:06:20 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 03:47:27 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 
 void	sort_stack(enum e_stack_id stack_id);
 void	radix_sort(enum e_stack_id stack_id);
+
+/*
+** stack_utils.c
+*/
+
+void	sort(void);
+
 
 /*
 ** stack_utils.c
