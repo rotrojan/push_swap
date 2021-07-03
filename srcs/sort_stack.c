@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 03:05:53 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 22:40:30 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	sort_stack(enum e_stack_id stack_id)
 		sort_three(A);
 	else if (size <= 5)
 		sort_five(A);
+	else if (size <= 270)
+		optimized_insertion_sort(A);
 	else
 		radix_sort(A);
 }

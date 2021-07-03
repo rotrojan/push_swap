@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 02:40:28 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 22:50:49 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ typedef struct s_stack
 	struct s_item	*items;
 	unsigned int	size;
 }	t_stack;
+
+/*
+** stack_utils.c
+*/
+
+t_stack	*stack_provider(enum e_stack_id stack_id);
+void	free_stack(enum e_stack_id stack_id);
+void	order_stack(enum e_stack_id stack_id);
 
 #endif

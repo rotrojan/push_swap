@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 18:52:56 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/02 20:22:51 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/03 22:42:48 by rotrojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,16 @@ int	get_mini(enum e_stack_id stack_id)
 		++i;
 	}
 	return (mini);
+}
+
+int	get_maxi(enum e_stack_id stack_id)
+{
+	t_item			*current;
+	unsigned int	size;
+
+	current = stack_provider(stack_id)->top;
+	size = stack_provider(stack_id)->size;
+	while (current->order != size - 1)
+		current = current->next;
+	return (current->nb);
 }
