@@ -6,7 +6,7 @@
 #    By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 16:26:22 by rotrojan          #+#    #+#              #
-#    Updated: 2021/07/05 00:00:50 by bigo             ###   ########.fr        #
+#    Updated: 2021/07/05 01:38:00 by bigo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,23 +49,25 @@ CFLAGS = -MMD -Wall -Wextra -Werror -I includes/ -I libft/includes/
 LDFLAGS = -L libft/ -lft
 
 vpath %.c $(addprefix $(SRCS_DIR), /. /checker)
+vpath %.a $(LIBS:%=lib%)
 
 all:
 	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
 	$(MAKE) $(NAME)
 	$(MAKE) $(CHECKER_NAME)
 
-$(NAME): $(OBJS) $(COMMON_OBJS)| $(LIBS:%=lib%.a)
+$(NAME): $(OBJS) $(COMMON_OBJS) $(LIBS:%=lib%.a)
+	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 bonus :
 	$(MAKE) $(CHECKER_NAME)
 
-$(CHECKER_NAME): $(CHECKER_OBJS) $(COMMON_OBJS) | $(LIBS:%=lib%.a)
+$(CHECKER_NAME): $(CHECKER_OBJS) $(COMMON_OBJS) $(LIBS:%=lib%.a)
+	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 lib%.a:
-	$(foreach LIB, $(LIBS), $(MAKE) -C lib$(LIB) ;)
 	$(MAKE) -C $(@:%.a=%)
 
 -include $(DEPENDENCIES) $(CHECKER_DEPENDENCIES) $(COMMON_DEPENDENCIES)
