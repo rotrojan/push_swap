@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 18:47:42 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 22:51:38 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:09:06 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_bool	is_reverse_sorted(enum e_stack_id stack_id);
 
 void	*get_shortest_rotate(enum e_stack_id stack_id, int value);
 int		get_mini(enum e_stack_id stack_id);
+int		get_next_mini(enum e_stack_id stack_id, int mini);
 int		get_maxi(enum e_stack_id stack_id);
 
 #endif

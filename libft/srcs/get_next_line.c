@@ -6,17 +6,31 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:23:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/06/20 23:31:04 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/04 23:57:35 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	*free_and_return_null(char **str, char **str_new)
+{
+	free(*str);
+	*str = NULL;
+	free(*str_new);
+	*str_new = NULL;
+	return (NULL);
+}
 
 static char	*ft_append_char(char *str, char c)
 {
 	int		i;
 	char	*str_new;
 
+	if (c == '\0')
+	{
+		free(str);
+		return (NULL);
+	}
 	i = 0;
 	str_new = NULL;
 	str_new = malloc(sizeof(*str_new) * (ft_strlen(str) + 2));
@@ -24,6 +38,8 @@ static char	*ft_append_char(char *str, char c)
 		return (NULL);
 	while (str[i])
 	{
+		if (ft_isprint(str[i]) == 0)
+			free_and_return_null(&str, &str_new);
 		str_new[i] = str[i];
 		i++;
 	}

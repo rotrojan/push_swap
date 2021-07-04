@@ -6,13 +6,28 @@
 /*   By: bigo <rotrojan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 20:31:22 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/02 23:12:24 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/04 23:37:04 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-enum e_instruction	get_next_instruction(void)
+static void	free_both_stack(void)
+{
+	free_stack(A);
+	free_stack(B);
+}
+
+static enum e_instruction	free_and_return_instruction(
+							enum e_instruction instruction,
+							char **instruction_str)
+{
+	free(*instruction_str);
+	*instruction_str = NULL;
+	return (instruction);
+}
+
+static enum e_instruction	get_next_instruction(void)
 {
 	int					ret;
 	char				*instruction_str;
@@ -25,51 +40,42 @@ enum e_instruction	get_next_instruction(void)
 	if (ret > 0)
 	{
 		instruction = 0;
-		while (instruction != INSTRUCTION_ERROR)
+		while (instruction != WRONG_INSTRUCTION)
 		{
 			if (ft_strcmp(instruction_str, instruction_array[instruction]) == 0)
 				break ;
 			++instruction;
 		}
-		free(instruction_str);
-		instruction_str = NULL;
-		return (instruction);
+		return (free_and_return_instruction(instruction, &instruction_str));
 	}
 	else if (ret == -1)
-		return (WRONG_INSTRUCTION);
+		return (free_and_return_instruction(WRONG_INSTRUCTION,
+				&instruction_str));
 	else
-		return (END_OF_INSTRUCTIONS);
+		return (free_and_return_instruction(END_OF_INSTRUCTIONS,
+				&instruction_str));
 }
 
-void	exec_instruction(enum e_instruction instruction)
+static t_error	exec_instructions(void)
 {
-	static	void	(*operations_array[])(void) = {
+	enum e_instruction	instruction;
+	static	void		(*operations_array[])(void) = {
 		&push_a, &push_b,
 		&swap_a, &swap_b, &swap_s,
 		&rotate_a, &rotate_b, &rotate_r,
 		&reverse_rotate_a, &reverse_rotate_b, &reverse_rotate_r
 	};
 
-	operations_array[instruction]();
-}
-
-t_error	exec_next_instruction(void)
-{
-	enum e_instruction	instruction;
-
 	instruction = get_next_instruction();
 	while (instruction != END_OF_INSTRUCTIONS)
 	{
 		if (instruction == WRONG_INSTRUCTION)
+		{
 			return (INSTRUCTION_ERROR);
-		else if (instruction == END_OF_INSTRUCTIONS)
-		{
-			free_stack(A);
-			free_stack(B);
 		}
-		else
+		else if (instruction != END_OF_INSTRUCTIONS)
 		{
-			exec_instruction(instruction);
+			operations_array[instruction]();
 			instruction = get_next_instruction();
 		}
 	}
@@ -85,14 +91,14 @@ int	main(int ac, char **av)
 	error = parse_args(av);
 	if (error != NO_ERROR)
 	{
+		free_both_stack();
 		ft_putendl_fd("Error", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	error = exec_next_instruction();
+	error = exec_instructions();
 	if (error == INSTRUCTION_ERROR)
 	{
-		free_stack(A);
-		free_stack(B);
+		free_both_stack();
 		ft_putendl_fd("Error", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
@@ -100,7 +106,6 @@ int	main(int ac, char **av)
 		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);
-	free_stack(A);
-	free_stack(B);
+	free_both_stack();
 	return (EXIT_SUCCESS);
 }

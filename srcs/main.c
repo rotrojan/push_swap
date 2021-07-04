@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 16:29:24 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 22:53:43 by rotrojan         ###   ########.fr       */
+/*   Updated: 2021/07/04 21:02:45 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 		error = parse_args(av);
 		if (error != NO_ERROR)
 		{
+			free_stack(A);
 			ft_putendl_fd("Error", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}

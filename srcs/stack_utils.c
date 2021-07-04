@@ -6,7 +6,7 @@
 /*   By: rotrojan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 18:52:56 by rotrojan          #+#    #+#             */
-/*   Updated: 2021/07/03 03:27:33 by bigo             ###   ########.fr       */
+/*   Updated: 2021/07/04 21:02:03 by bigo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	order_stack(enum e_stack_id stack_id)
 	int				mini;
 	t_item			*current;
 	unsigned int	order;
-	t_bool			stop_flag;
 	t_stack			*stack;
 
 	mini = get_mini(stack_id);
@@ -74,15 +73,9 @@ void	order_stack(enum e_stack_id stack_id)
 	while (order < stack->size)
 	{
 		current = stack->top;
-		stop_flag = FALSE;
-		while (current->nb != mini && stop_flag == FALSE)
-		{
+		while (current->nb != mini)
 			current = current->next;
-			if (current == stack->top)
-				stop_flag = TRUE;
-		}
-		if (stop_flag == FALSE)
-			current->order = order++;
-		++mini;
+		current->order = order++;
+		mini = get_next_mini(stack_id, mini);
 	}
 }
